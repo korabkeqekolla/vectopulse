@@ -147,7 +147,11 @@ VectoPulse analyzes *how* a text is written rather than *what* is written. This 
 
 
 <img width="1801" height="822" alt="image" src="https://github.com/user-attachments/assets/dc772291-45ca-4421-9c69-8894f27106b3" />
+
 <img width="1801" height="822" alt="image" src="https://github.com/user-attachments/assets/9c2dff99-eb80-4cce-9eea-254e08986762" />
+
+<img width="1801" height="822" alt="image" src="https://github.com/user-attachments/assets/dd8282e6-d1a0-4574-8ce6-7414d509c9ba" />
+
 
 ## Case Study and Inspiration for the tool — The Unabomber Writings
 VectoPulse can illustrate **behavioral correlation in real investigations** using historical cases like Ted Kaczynski (the Unabomber):
