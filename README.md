@@ -1,22 +1,13 @@
-# 🛰️ VectoPulse - Behavioral Intelligence & Forensic Stylometry
-
-![Status: Prototype](https://img.shields.io/badge/Status-Prototype-blue?style=flat-square)
-![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen?style=flat-square)
+# 🛰️ VectoPulse - Behavioral Intelligence & Forensic Stylometry  ![Status: Prototype](https://img.shields.io/badge/Status-Prototype-blue?style=flat-square) ![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen?style=flat-square)
 
 ## Overview
-**VectoPulse** is a proof-of-concept **behavioral intelligence & forensic stylometry engine** built for OSINT analysts.
-
-It helps correlate anonymous or pseudonymous text to identify **mass misinformants, sock puppets, coordinated personas, and cross-platform actors** by analyzing *how* someone writes — not what they say.
-
-IPs can be spoofed. Accounts can be burned. VPNs are cheap.
-**Typing behavior is not.**
+**VectoPulse** is a proof-of-concept **behavioral intelligence & forensic stylometry engine** built for OSINT analysts. It helps correlate anonymous or pseudonymous text to identify **mass misinformants, sock puppets, coordinated personas, and cross-platform actors** by analyzing *how* someone writes — not what they say. IPs can be spoofed. Accounts can be burned. VPNs are cheap. **Typing behavior is not.**
 
 > **Disclaimer:** VectoPulse produces **probabilistic similarity signals**, not identity confirmation. Results are suggestive and must never be treated as proof.
 
 ---
 
 ## Features
-
 - 🧠 **Cognitive Complexity Analysis** (character-level Shannon entropy)
 - 🧬 **Structural DNA Mapping** via trigram overlap
 - ✒️ **Punctuation Rhythm Profiling** (subconscious symbol usage)
@@ -27,7 +18,6 @@ IPs can be spoofed. Accounts can be burned. VPNs are cheap.
 ---
 
 ## Installation
-
 ```bash
 # 1. Clone the repository
 git clone https://github.com/korabkeqekolla/vectopulse.git
@@ -35,101 +25,130 @@ cd vectopulse
 
 # 2. Install dependencies
 pip install -r requirements.txt
-
 ```
 
 ---
 
 ## Usage
-
 1. Launch the application:
 ```bash
-streamlit run vectopulse.py // if you are on windows use
+streamlit run vectopulse.py
+# if you are on windows use:
 python -m streamlit run vectopulse.py
 ```
-
 2. Paste **Reference Text (A)** and **Suspect Text (B)** from any source:
-   - Forums
-   - Comment sections
-   - Paste sites
-   - Social media posts
-
+    - Forums
+    - Comment sections
+    - Paste sites
+    - Social media posts
 3. Run **Behavioral Correlation** to receive:
-   - Similarity Index (SI)
-   - Entropy comparison
-   - Punctuation alignment
-   - Shared structural trigrams
+    - Similarity Index (SI)
+    - Entropy comparison
+    - Punctuation alignment
+    - Shared structural trigrams
 
 > ⚠️ SI scores are **directional indicators**, not identity proof.
 
 ---
 
+## Methodology & AI Detection
+VectoPulse analyzes *how* a text is written rather than *what* is written. This allows analysts to detect behavioral patterns, cross-platform personas, coordinated accounts, and potential AI-generated content.
+
+### 1. Cognitive Complexity Analysis (Shannon Entropy)
+- Measures unpredictability of character sequences.
+- Formula used:
+  \[
+  H(X) = -\sum_{i=1}^{n} P(x_i) \log_2 P(x_i)
+  \]
+  where \(P(x_i)\) is the probability of character \(x_i\) in the text.
+- Human text shows unique entropy patterns.
+- AI text often has smoother, more uniform entropy.
+
+### 2. Structural DNA Mapping (Trigram Overlap)
+- Breaks text into 3-character sequences (trigrams).
+- Overlap score calculated as:
+  \[
+  Trigram\_Similarity(A,B) = \frac{|Trigrams(A) \cap Trigrams(B)|}{|Trigrams(A) \cup Trigrams(B)|}
+  \]
+- Humans exhibit repeated unconscious structures; AI tends to be more uniform.
+
+### 3. Punctuation Rhythm Profiling
+- Analyzes frequency and placement of punctuation marks.
+- Rhythm similarity computed as normalized frequency difference for each punctuation:
+  \[
+  PR\_Similarity = 1 - \frac{|Freq_A - Freq_B|}{max(Freq_A, Freq_B)}
+  \]
+- Humans have subconscious punctuation habits.
+- AI may use overly consistent or "correct" punctuation.
+
+### 4. Multilingual Analysis
+- Works across EN, SQ, DE, AR, ZH.
+- Adjusts trigram and entropy calculations per language.
+- Non-Latin scripts may have lower absolute similarity scores.
+
+### 5. Similarity Index (SI)
+- Aggregates entropy, trigram overlap, and punctuation rhythm into a single score:
+  \[
+  SI = w_1*Entropy\_Similarity + w_2*Trigram\_Similarity + w_3*PR\_Similarity
+  \]
+  where \(w_1, w_2, w_3\) are weighting coefficients.
+- Provides a **directional probability** of behavioral similarity.
+- Not a confirmation of identity.
+
+### 6. AI vs Human Signals
+- Human: uneven punctuation, unique sentence lengths, idiosyncratic trigram patterns.
+- AI: uniform punctuation, consistent sentence length, smooth entropy.
+- VectoPulse can indicate **possible AI-generated or heavily templated text**.
+
+### 7. Offline Processing
+- All processing is done locally.
+- No text leaves your machine.
+
+### 8. Workflow Summary
+1. Input Reference Text (A) and Suspect Text (B).
+2. Compute entropy, trigrams, and punctuation rhythm.
+3. Output Similarity Index (SI).
+4. Analyst interprets directional signal for cross-platform linkage, coordinated activity, or AI text detection.
+
+---
+
 ## Testing & Accuracy (PoC)
-
-VectoPulse was validated as a **behavioral correlation PoC**, not an attribution engine.
-
-- Tested across **5 languages** with multiple controlled cases
-- Same-author samples consistently score **higher similarity** than different-author samples
-- Best performance with:
+- Validated as a **behavioral correlation PoC**, not an attribution engine.
+- Tested across **5 languages** with controlled cases.
+- Same-author samples consistently score **higher similarity**.
+- Works best with:
   - Medium-to-long texts
-  - Natural, informal writing
+  - Informal writing
   - Repeated human interaction (comments, replies, forum posts)
 
 ### Known Limitations
-- Short texts reduce signal strength
-- Topic overlap can inflate similarity
-- Non-Latin scripts (e.g. Chinese, Arabic) show lower absolute scores
-- Similarity Index values are **not comparable across languages**
+- Short texts reduce signal strength.
+- Topic overlap can inflate similarity.
+- Similarity Index values **not comparable across languages**.
 
 ---
 
 ## Example OSINT Use Cases
-
 ### Case 1 — Mass Misinformant Across Platforms
-A highly active "security expert" on a hacking forum spreads technical misinformation.
-A suspected social media account pushes the *same narratives* under a different identity.
-
-VectoPulse highlights:
-- Matching punctuation rhythms
-- Similar entropy profiles
-- Overlapping trigram DNA
-
-➡️ Analyst gains **strong directional signal** for cross-platform linkage.
-
----
+- Matches punctuation rhythms, entropy, and trigrams.
+- Indicates potential cross-platform linkage.
 
 ### Case 2 — Coordinated Comment Network
-Multiple accounts comment under cybersecurity news articles, appearing independent.
-
-Behavioral correlation reveals:
-- Near-identical structural habits
-- Consistent symbol usage
-- Repeated linguistic micro-patterns
-
-➡️ Indicates **single operator or tightly coordinated group**.
-
----
+- Reveals repeated linguistic micro-patterns.
+- Suggests single operator or coordinated group.
 
 ### Case 3 — Forum Persona Reuse
-An old forum account disappears after exposure.
-A new account emerges months later with a different username.
-
-VectoPulse detects:
-- Shared structural DNA
-- Similar cognitive complexity
-
-➡️ Supports **persona continuity hypothesis**.
+- Detects structural DNA similarity and cognitive complexity.
+- Supports persona continuity hypothesis.
 
 ---
 
 ## Contribution
-
-This project is released as an **open research PoC**
-
-Contributions are welcome for:
-- Additional behavioral signals
-- Language-specific normalization
-- Adversarial testing & evaluation
+- Open research PoC
+- Contributions welcome for:
+  - Additional behavioral signals
+  - Language-specific normalization
+  - Adversarial testing & evaluation
 
 ---
 
@@ -140,4 +159,3 @@ MIT License — see LICENSE file.
 
 ## Developer
 Korab Keqekolla // KING KOBRA II
----
