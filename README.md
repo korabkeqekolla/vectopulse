@@ -143,6 +143,54 @@ VectoPulse analyzes *how* a text is written rather than *what* is written. This 
 
 ---
 
+### PoC - VectoPulse Action
+
+
+<img width="1801" height="822" alt="image" src="https://github.com/user-attachments/assets/dc772291-45ca-4421-9c69-8894f27106b3" />
+<img width="1801" height="822" alt="image" src="https://github.com/user-attachments/assets/9c2dff99-eb80-4cce-9eea-254e08986762" />
+
+## Case Study and Inspiration for the tool — The Unabomber Writings
+VectoPulse can illustrate **behavioral correlation in real investigations** using historical cases like Ted Kaczynski (the Unabomber):
+
+**Scenario:**
+- **Reference Text (A):** Kaczynski’s manifesto and known letters
+- **Suspect Text (B):** Anonymous letters of unknown origin
+
+**Step 1 — Cognitive Complexity (Entropy)**
+- Compute Shannon entropy of character distributions in both texts.
+- High similarity indicates comparable cognitive complexity and writing style.
+
+**Step 2 — Structural DNA Mapping (Trigram Overlap)**
+- Extract 3-character sequences (trigrams) from both texts.
+- Compute overlap using:
+  \[
+  Trigram\_Similarity(A,B) = \frac{|Trigrams(A) \cap Trigrams(B)|}{|Trigrams(A) \cup Trigrams(B)|}
+  \]
+- Identifies repeated micro-patterns unique to the author.
+
+**Step 3 — Punctuation Rhythm Profiling**
+- Analyze punctuation frequency and placement using:
+  \[
+  PR\_Similarity = 1 - \frac{|Freq_A - Freq_B|}{max(Freq_A,Freq_B)}
+  \]
+- Detects subconscious punctuation habits, e.g., dashes, semicolons, commas.
+
+**Step 4 — Combined Similarity Index**
+- Weighted aggregation of entropy, trigram, and punctuation similarities:
+  \[
+  SI = w_1*Entropy\_Similarity + w_2*Trigram\_Similarity + w_3*PR\_Similarity
+  \]
+- High SI suggests strong behavioral similarity between the texts.
+
+**Interpretation:**
+- Directional evidence supports the hypothesis that both texts may have been written by the same individual.
+- **Note:** SI is a probabilistic indicator, not definitive proof.
+
+**Disclaimer:**
+- Used here for educational and illustrative purposes.
+- VectoPulse complements other forensic evidence but does not replace legal or investigative procedures.
+
+
 ## Contribution
 - Open research PoC
 - Contributions welcome for:
